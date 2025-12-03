@@ -1,14 +1,21 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
-
+-- Host: localhost
+-- Generation Time: Dec 03, 2025 at 04:55 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
 
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `shop_db`
@@ -56,6 +63,15 @@ CREATE TABLE `message` (
   `message` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `message`
+--
+
+INSERT INTO `message` (`id`, `user_id`, `name`, `email`, `number`, `message`) VALUES
+(12, 1, 'Sakib', 'millatsakib01@gmail.com', '0161874612', 'Have there any discount coupon?'),
+(13, 2, 'Quinn Miller', 'jera@mailinator.com', '393', 'Vero quibusdam aut d'),
+(14, 2, 'Shad Frederick', 'fene@mailinator.com', '617', 'Asperiores delectus');
+
 -- --------------------------------------------------------
 
 --
@@ -81,8 +97,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `name`, `number`, `email`, `method`, `address`, `total_products`, `total_price`, `placed_on`, `payment_status`) VALUES
-(22, 52, 'irteja mahmud', '01632645891', 'irtejamahamud9@gmail.com', 'cash on delivery', 'flat no. 77 15 Dhaka Dhaka Bangladesh - ', ', MacBook Pro ( 1 )', 110000, '26-May-2024', 'completed'),
-(23, 52, 'irteja mahmud', '1632645891', 'irti@gmail.com', 'cash on delivery', 'flat no. 54 Lichubagan  Basundhara Dhaka Bangladesh - ', ', Acer Predator Helios 18 ( 1 )', 215000, '28-May-2024', 'pending');
+(24, 2, 'Claire Vance', '361', 'ginuw@mailinator.com', 'credit card', 'flat no. Magna voluptatem et  Autem delectus aut  Pariatur Autem repu Enim ab ab dolor ad  Est sapiente tempore - ', ', iPhone 14 ( 1 )', 81000, '03-Dec-2025', 'completed'),
+(25, 2, 'Leslie Hester', '828', 'puqusagyd@mailinator.com', 'cash on delivery', 'flat no. Aut facilis eu non q Perferendis omnis ob Assumenda et vitae s Vero et veniam quo  Provident soluta qu - ', ', Samsung Odyssey   G7 ( 5 )', 374995, '03-Dec-2025', 'pending'),
+(26, 2, 'Kaitlin Chapman', '897', 'qanaqibu@mailinator.com', 'cash on delivery', 'flat no. Saepe culpa et volu Pariatur Repudianda Quia tempora culpa  Modi est ab soluta  Autem occaecat dolor - ', ', MacBook Pro ( 4 )', 440000, '03-Dec-2025', 'pending');
 
 -- --------------------------------------------------------
 
@@ -142,10 +159,10 @@ CREATE TABLE `review` (
 --
 
 INSERT INTO `review` (`id`, `name`, `reviews`, `userid`) VALUES
-(8, 'Tanjim', 'DigitalMart offers a seamless shopping experience with fast delivery and excellent customer service. Highly recommend!', 1),
-(9, 'Abid', 'Good product selection and user-friendly site, but shipping was slightly delayed. Overall, a decent shopping experience.', 2),
-(10, 'Nazmul', 'Lovely little shop in the FarmFresh compound with a good range of organic products.', 3),
-(11, 'Irteja ', 'Good product selection and user-friendly site, but shipping was slightly delayed. Overall, a decent shopping experience.', 52);
+(11, 'Fatema Akter Prithu ', 'Good product selection and user-friendly site, but shipping was slightly delayed.', 2),
+(12, 'Md. Sohan Millat Sakib', 'Product quality are average. But I satisfied with PC Shop. Because they are very helpful.', 1),
+(13, 'Sakib', 'Good Products. I am totally satisfied with their service.', 1),
+(14, 'Beau Klein', 'Iusto voluptates qui', 2);
 
 -- --------------------------------------------------------
 
@@ -167,10 +184,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `user_type`, `image`) VALUES
-(50, 'Admin', 'admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'admin', '1706601911714.jpg'),
-(51, 'shayon', 'shaon@gmail.com', 'b8338bfdd797c08f8e5d7b2f22d0b854', 'user', 'Pic5.jfif'),
-(52, 'irteja', 'irtejamahamud9@gmail.com', 'fe418b78efe16089c1da72559c875f9b', 'user', '1706601911714.jpg'),
-(53, 'Shaon', 'shahriarhossenshaon4@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'user', '285809179_3033322080265154_1410153340465777872_n.jpg');
+(1, 'Md. Sohan Millat Sakib', 'millatsakib01@gmail.com', '429d63689a0813ea87fa77c3931bf263', 'user', 'sohan-millat-sakib.png'),
+(2, 'Fatema Jahan Prithu', 'prithu@gmail.com', '429d63689a0813ea87fa77c3931bf263', 'admin', 'prithu.png'),
+(4, 'Ayshi Sarker', 'ayshi@gmail.com', '429d63689a0813ea87fa77c3931bf263', 'user', 'ayshi.jpg'),
+(5, 'Ekra Islam Ohi', 'ohi@gmail.com', '429d63689a0813ea87fa77c3931bf263', 'user', 'ohi.jpg'),
+(6, 'Admin', 'admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'admin.png'),
+(57, 'Admin 1', 'admin1@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'admin.png');
 
 -- --------------------------------------------------------
 
@@ -186,14 +205,6 @@ CREATE TABLE `wishlist` (
   `price` int(100) NOT NULL,
   `image` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `wishlist`
---
-
-INSERT INTO `wishlist` (`id`, `user_id`, `pid`, `name`, `price`, `image`) VALUES
-(63, 49, 30, 'Beetroot', 120, 'Beetroot.jpg'),
-(64, 49, 31, 'Capsicum ', 210, 'capsicum.jfif');
 
 --
 -- Indexes for dumped tables
@@ -249,19 +260,19 @@ ALTER TABLE `wishlist`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -273,13 +284,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `wishlist`

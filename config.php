@@ -1,6 +1,6 @@
 <?php
 
-$db_name = "mysql:host=127.0.0.1;dbname=shop_db";
+$db_name = "mysql:host=db;dbname=shop_db";
 $username = "root";
 $password = "";
 
