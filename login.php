@@ -1,178 +1,214 @@
 <?php
 
 @include 'config.php';
-
 session_start();
 
 if (isset($_POST['submit'])) {
-   if (empty($_POST['email']) || empty($_POST['pass'])) {
 
-      $message[] = 'All fields are Required';
-   } else {
-      $email = $_POST['email'];
-      $email = filter_var($email, FILTER_SANITIZE_STRING);
-      $pass = md5($_POST['pass']);
-      $pass = filter_var($pass, FILTER_SANITIZE_STRING);
+    if (empty($_POST['email']) || empty($_POST['pass'])) {
 
-      $sql = "SELECT * FROM `users` WHERE email = ? AND password = ?";
-      $stmt = $conn->prepare($sql);
-      $stmt->execute([$email, $pass]);
-      $rowCount = $stmt->rowCount();
+        $message[] = 'All fields are Required';
 
-      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    } else {
 
-      if ($rowCount > 0) {
+        $email = $_POST['email'];
+        $email = filter_var($email, FILTER_SANITIZE_STRING);
+        $pass = md5($_POST['pass']);
+        $pass = filter_var($pass, FILTER_SANITIZE_STRING);
 
-         if ($row['user_type'] == 'admin') {
+        $sql = "SELECT * FROM `users` WHERE email = ? AND password = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$email, $pass]);
+        $rowCount = $stmt->rowCount();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            $_SESSION['admin_id'] = $row['id'];
-            header('location:admin_page.php');
-         } elseif ($row['user_type'] == 'user') {
-
-            $_SESSION['user_id'] = $row['id'];
-            header('location:/');
-         } else {
-            $message[] = 'no user found!';
-         }
-      } else {
-         $message[] = 'incorrect email or password!';
-      }
-   }
+        if ($rowCount > 0) {
+            if ($row['user_type'] == 'admin') {
+                $_SESSION['admin_id'] = $row['id'];
+                header('location:admin_page.php');
+            } elseif ($row['user_type'] == 'user') {
+                $_SESSION['user_id'] = $row['id'];
+                header('location:/');
+            } else {
+                $message[] = 'no user found!';
+            }
+        } else {
+            $message[] = 'incorrect email or password!';
+        }
+    }
 }
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>PC Shop</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PC Shop - Login</title>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/components.css">
-   <style>
-      body {
-         background-color: rgb(245, 245, 245);
-         background-image: url("./images/front.jpg");
-         background-repeat: no-repeat;
-         background-size: cover;
-         background-origin: content-box;
-      }
+<style>
 
-      .form-container {
-         min-height: 100vh;
-         display: flex;
-         align-items: center;
-         justify-content: center;
-      }
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    background: url('./images/front.jpg') no-repeat center center / cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
 
-      .form-container form {
-         width: 100%;
-         max-width: 400px;
-         background-color: rgba(255, 255, 255, 0.5);
-         border-radius: 10px;
-         box-shadow: 3px 3px 5px 3px rgb(148, 22, 220);
-         padding: 4rem;
-         margin: 0.5rem;
-         display: flex;
-         flex-direction: column;
-         align-items: center;
-         border: 2px solid #9416DC;
-      }
+/* Dark overlay */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.15);
+}
 
-      .form-container form h3 {
-         font-size: 1.8rem;
-         color: #075603;
-         text-transform: uppercase;
-         text-align: center;
-         margin-bottom: 1.5rem;
-         font-weight: 900;
-      }
+/* ==== GLASS LOGIN CARD ==== */
+.login-card {
+    position: relative;
+    width: 380px;
+    padding: 40px 35px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.3);
+    box-shadow: 0 10px 35px rgba(0,0,0,0.3);
+    text-align: center;
+}
 
-      .form-container form .box {
-         width: 100%;
-         font-size: 1rem;
-         margin: 0.5rem 0;
-         color: #000000;
-         border-radius: 5px;
-         font-weight: 700;
-         border: 2px solid #365436;
-         padding: 0.75rem;
-         background-color: #e7f0e7;
-      }
+.login-card h3 {
+    margin-bottom: 18px;
+    font-size: 26px;
+    font-weight: 700;
+    color: #00ff66;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 
-      .form-container form p {
-         margin-top: 1rem;
-         font-size: 1rem;
-         font-weight: 600;
-         text-align: center;
-         color: #04042b;
-      }
+/* ==== INPUT FIELDS ==== */
+.input-box {
+    width: 100%;
+    margin: 12px 0;
+    position: relative;
+}
 
-      .form-container form p a {
-         color: #0bad0b;
-         text-decoration: none;
-      }
+.input-box input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    font-weight: 600;
+    background: rgba(255,255,255,0.85);
+    color: #000;
+}
 
-      .form-container form p a:hover {
-         text-decoration: underline;
-      }
+.input-box input:focus {
+    box-shadow: 0 0 8px rgba(0,255,100,0.7);
+}
 
-      .form-container .btn {
-         background-color: #06661b;
-         padding: 0.75rem;
-         width: 100%;
-         border-radius: 5px;
-         color: #ffffff;
-         font-size: 1rem;
-         text-transform: capitalize;
-         cursor: pointer;
-         font-family: "Dancing Script", cursive;
-         margin-top: 1rem;
-      }
+/* ==== BUTTON ==== */
+.btn {
+    width: 100%;
+    background: #00cc44;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
 
-      .form-container .btn:hover {
-         background-color: #1a241c;
-      }
-   </style>
+.btn:hover {
+    background: #009933;
+    transform: translateY(-2px);
+}
+
+/* Register Link */
+.login-card p {
+    margin-top: 18px;
+    font-size: 14px;
+    color: white;
+}
+
+.login-card p a {
+    color: #005823ff;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-card p a:hover {
+    text-decoration: underline;
+}
+
+/* Error Message */
+.message {
+    position: absolute;
+    top: 20px;
+    background: white;
+    padding: 10px 14px;
+    border-left: 4px solid red;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.message i {
+    cursor: pointer;
+    float: right;
+    margin-left: 10px;
+    color: red;
+}
+
+</style>
 </head>
 
 <body>
 
-   <?php
+<?php
+if (isset($message)) {
+    foreach ($message as $msg) {
+        echo '
+        <div class="message">
+            <span>' . $msg . '</span>
+            <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+        </div>';
+    }
+}
+?>
 
-   if (isset($message)) {
-      foreach ($message as $message) {
-         echo '
-      <div class="message">
-         <span>' . $message . '</span>
-         <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
-      </div>
-      ';
-      }
-   }
+<div class="login-card">
 
-   ?>
+    <h3>Login</h3>
 
-   <section class="form-container">
+    <form method="POST">
 
-      <form action="" enctype="multipart/form-data" method="POST">
-         <h3>Login Now</h3>
-         <input type="email" name="email" class="box" placeholder="Enter your email" required>
-         <input type="password" name="pass" class="box" placeholder="Enter your password" required>
-         <input type="submit" value="login now" class="btn" name="submit">
-         <p>Don't have an account? <a href="register.php">Register now</a></p>
-      </form>
+        <div class="input-box">
+            <input type="email" name="email" placeholder="Enter your email" required>
+        </div>
 
-   </section>
+        <div class="input-box">
+            <input type="password" name="pass" placeholder="Enter your password" required>
+        </div>
 
+        <input type="submit" value="Login Now" name="submit" class="btn">
+
+        <p>Don't have an account? <a href="register.php">Register</a></p>
+    </form>
+
+</div>
 
 </body>
-
 </html>

@@ -23,27 +23,24 @@ if(isset($_POST['submit'])){
    $select->execute([$email]);
 
    if($select->rowCount() > 0){
-      $message[] = 'user email already exist!';
+      $message[] = 'User email already exists!';
    }else{
       if($pass != $cpass){
-         $message[] = 'Confirm password is not matched!';
+         $message[] = 'Confirm password does not match!';
       }else{
          $insert = $conn->prepare("INSERT INTO `users`(name, email, password, image) VALUES(?,?,?,?)");
          $insert->execute([$name, $email, $pass, $image]);
 
          if($insert){
             if($image_size > 1000000){
-               $message[] = 'image size is too large!';
+               $message[] = 'Image size is too large!';
             }else{
                move_uploaded_file($image_tmp_name, $image_folder);
-               $message[] = 'registered successfully!';
                header('location:login.php');
             }
          }
-
       }
    }
-
 }
 
 ?>
@@ -51,136 +48,184 @@ if(isset($_POST['submit'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>register</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register - PC Shop</title>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/components.css">
 <style>
+
 body {
-  background-color: rgb(245, 245, 245);
-  background-image: url("./images/front.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-origin: content-box;
-}
-.form-container {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    background: url('./images/front.jpg') no-repeat center center / cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
-.form-container form {
-  width: 100%;
-  max-width: 400px;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 10px;
-  box-shadow: 3px 3px 5px 3px rgb(148, 22, 220);
-  padding: 4rem;
-  margin: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 2px solid #9416DC;
+/* 🟩 Dark overlay for visibility */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.15);
 }
 
-.form-container form h3 {
-  font-size: 1.8rem;
-  color: #075603;
-  text-transform: uppercase;
-  text-align: center;
-  margin-bottom: 1.5rem;
-  font-weight: 900;
+/* 🟩 Glassmorphic Register Card */
+.register-card {
+    position: relative;
+    width: 400px;
+    padding: 40px 35px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.3);
+    box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+    text-align: center;
 }
 
-.form-container form .box {
-  width: 100%;
-  font-size: 1rem;
-  margin: 0.5rem 0;
-  color: #000000;
-  border-radius: 5px;
-  font-weight: 700;
-  border: 2px solid #365436;
-  padding: 0.75rem;
-  background-color: #e7f0e7;
+.register-card h3 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #00ff66;
+    text-transform: uppercase;
+    margin-bottom: 20px;
 }
 
-.form-container form p {
-  margin-top: 1rem;
-  font-size: 1rem;
-  font-weight: 600;
-  text-align: center;
-  color: #04042b;
+/* Input fields */
+.input-box {
+    width: 100%;
+    margin: 12px 0;
 }
 
-.form-container form p a {
-  color: #0bad0b;
-  text-decoration: none;
+.input-box input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 600;
+    font-size: 15px;
+    outline: none;
+    background: rgba(255,255,255,0.85);
 }
 
-.form-container form p a:hover {
-  text-decoration: underline;
+.input-box input:focus {
+    box-shadow: 0 0 8px rgba(0,255,100,0.7);
 }
 
-.form-container .btn {
-  background-color: #06661b;
-  padding: 0.75rem;
-  width: 100%;
-  border-radius: 5px;
-  color: #ffffff;
-  font-size: 1rem;
-  text-transform: capitalize;
-  cursor: pointer;
-  font-family: "Dancing Script", cursive;
-  margin-top: 1rem;
+/* Image upload box */
+.input-box input[type="file"] {
+    background: rgba(255,255,255,0.9);
+    padding: 8px;
 }
 
-.form-container .btn:hover {
-  background-color: #1a241c;
+/* 🟩 Button */
+.btn {
+    width: 100%;
+    background: #00cc44;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #009933;
+    transform: translateY(-2px);
+}
+
+/* Link section */
+.register-card p {
+    color: white;
+    margin-top: 16px;
+    font-size: 14px;
+}
+
+.register-card p a {
+    color: #00752fff;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.register-card p a:hover {
+    text-decoration: underline;
+}
+
+/* Error message */
+.message {
+    background: #fff;
+    padding: 10px 15px;
+    margin: 10px;
+    border-left: 4px solid red;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.message i {
+    cursor: pointer;
+    float: right;
+    color: red;
 }
 
 </style>
 </head>
+
 <body>
 
 <?php
-//for delete icon in message bar
 if(isset($message)){
-   foreach($message as $message){
+   foreach($message as $msg){
       echo '
       <div class="message">
-         <span>'.$message.'</span>
+         <span>'.$msg.'</span>
          <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
-      </div>
-      ';
+      </div>';
    }
 }
-
 ?>
 
-   
-<section class="form-container">
+<div class="register-card">
 
-   <form action="" enctype="multipart/form-data" method="POST">
-      <h3>Register Now</h3>
-      <input type="text" name="name" class="box" placeholder="Enter your name" required>
-      <input type="email" name="email" class="box" placeholder="Enter your email" required>
-      <input type="password" name="pass" class="box" placeholder="Enter your password" required>
-      <input type="password" name="cpass" class="box" placeholder="Confirm your password" required>
-      <input type="file" name="image" class="box" required accept="image/jpg, image/jpeg, image/png">
-      <input type="submit" value="register now" class="btn" name="submit">
-      <p>Already Have An Account? <a href="login.php">Login Now</a></p>
-   </form>
+    <h3>Register</h3>
 
-</section>
+    <form action="" method="POST" enctype="multipart/form-data">
 
+        <div class="input-box">
+            <input type="text" name="name" placeholder="Enter your name" required>
+        </div>
 
-<script src="js/script.js"></script>
+        <div class="input-box">
+            <input type="email" name="email" placeholder="Enter your email" required>
+        </div>
+
+        <div class="input-box">
+            <input type="password" name="pass" placeholder="Enter your password" required>
+        </div>
+
+        <div class="input-box">
+            <input type="password" name="cpass" placeholder="Confirm your password" required>
+        </div>
+
+        <div class="input-box">
+            <input type="file" name="image" accept="image/jpg,image/jpeg,image/png" required>
+        </div>
+
+        <input type="submit" value="Register Now" name="submit" class="btn">
+
+        <p>Already have an account? <a href="login.php">Login</a></p>
+
+    </form>
+</div>
+
 </body>
 </html>
