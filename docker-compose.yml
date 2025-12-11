@@ -1,24 +1,42 @@
 version: '3.8'
 
 services:
+
   db:
     image: mysql:5.7
+    container_name: shop_db
+    restart: always
     environment:
       MYSQL_DATABASE: shop_db
       MYSQL_ROOT_PASSWORD: ""
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-    ports:
-      - "3307:3306"
     volumes:
       - db_data:/var/lib/mysql
       - ./shop_db.sql:/docker-entrypoint-initdb.d/shop_db.sql
+    ports:
+      - "3307:3306"
 
   app:
     build: .
-    ports:
-      - "420:80"
+    container_name: shop_web
     volumes:
       - .:/var/www/html
+    ports:
+      - "420:80"
+    depends_on:
+      - db
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: shop_phpmyadmin
+    restart: always
+    ports:
+      - "8082:80"                 # Changed to avoid conflict with previous compose
+    environment:
+      PMA_HOST: shop_db           # connect to MySQL container
+      PMA_USER: root
+      PMA_PASSWORD: ""            # empty root password
+      PMA_ARBITRARY: 1
     depends_on:
       - db
 
