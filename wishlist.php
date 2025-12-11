@@ -106,7 +106,8 @@ if (isset($_GET['delete_all'])) {
                   <input type="hidden" name="p_price" value="<?= $fetch_wishlist['price']; ?>">
                   <input type="hidden" name="p_image" value="<?= $fetch_wishlist['image']; ?>">
                   <div class="latest-btn">
-                     <button type="submit" class="option-buttn" name="add_to_cart"><i class="fas fa-cart-shopping fa-bounce" style=" --fa-bounce-start-scale-x: 1; --fa-bounce-start-scale-y: 1; --fa-bounce-jump-scale-x: 1; --fa-bounce-jump-scale-y: 1; --fa-bounce-land-scale-x: 1; --fa-bounce-land-scale-y: 1; "></i></button>
+                     <button type="submit" class="option-buttn" name="add_to_cart"><i class="fas fa-cart-shopping fa-bounce" style=" --fa-bounce-start-scale-x: 1; --fa-bounce-start-scale-y: 1; --fa-bounce-jump-scale-x: 1; --fa-bounce-jump-scale-y: 1; --fa-bounce-land-scale-x: 1; --fa-bounce-land-scale-y: 1; 
+                     color:black !important;"></i></button>
                      <input type="number" min="0" value="1" name="p_qty" class="qty">
                   </div>
                </form>

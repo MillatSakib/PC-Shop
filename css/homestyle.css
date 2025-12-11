@@ -89,102 +89,119 @@
 
 .products .box-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 30rem);
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+  gap: 2.5rem;
   justify-content: center;
-  align-items: flex-start;
+  align-items: stretch;
 }
 
 .products .box-container .box {
-  padding: 1rem;
+  padding: 1.5rem;
   text-align: center;
-  background-color: var(--white);
-  box-shadow: var(--box-shadow);
-  border-radius: 0.5rem;
+  background: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border: 1px solid #eaeaea;
+  transition: 0.4s ease;
   position: relative;
-  border: 5px ridge rgb(255, 252, 252);
-  transition: 1s;
 }
 
-.products .box-container .box:hover{
-  transform: scale(0.9);
-  z-index: 2;
-  border-radius: 20px;
-  border: 2px solid;
+.products .box-container .box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+  border-radius: 1.5rem;
 }
 
+/* Price badge */
 .products .box-container .box .price {
+  z-index: 100000;
   position: absolute;
   top: 1rem;
   left: 1rem;
-  padding: 0.2rem;
+  background: #0a8d29;
+  color: #fff;
+  padding: 0.4rem 0.8rem;
+  font-size: 1.7rem;
   border-radius: 0.5rem;
-  background-color: rgb(8, 141, 41);
-  font-size: 1.8rem;
-  color: var(--white);
+  font-weight: bold;
 }
-
-
-.products .box-container .box .price span {
-  font-size: 1.5rem;
-  color: var(--white);
-  margin: 0 0.2rem;
+.fas,.fa-heart{
+   color: white !important;
 }
-
-.products .box-container .box .fa-eye {
+/* Badges */
+.badge {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  border-radius: 0.5rem;
-  height: 3.5rem;
-  line-height: 3.3rem;
-  width: 4rem;
-  border: var(--border);
-  color: var(--black);
-  font-size: 2rem;
-  background-color: rgb(132, 216, 139);
+  background: crimson;
+  color: #fff;
+  padding: 0.4rem 0.8rem;
+  font-size: 1.2rem;
+  border-radius: 0.4rem;
+  font-weight: bold;
 }
 
-.products .box-container .box .fa-eye:hover {
-  color: var(--white);
-  background-color: var(--black);
-}
+
+
 
 .products .box-container .box img {
-  width: 250px;
-  height: 250px;
-  margin-bottom: 3rem;
-  padding: 5px;
+  width: 260px;
+  height: 260px;
+  object-fit: contain;
+  margin-bottom: 1.5rem;
+  transition: 0.3s ease;
+}
+
+.products .box-container .box:hover img {
+  transform: scale(1.05);
 }
 
 .products .box-container .box .name {
-  font-size: 2rem;
-  color: var(--black);
-  font-weight: 800;
-  padding: 1rem 0;
+  font-size: 2.1rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  color: #1a1a1a;
 }
 
-.products .box-container .box .qty {
-  margin: 0.2rem 0;
-  border-radius: 0.5rem;
-  padding: 0.4rem;
-  font-size: 1.9rem;
-  font-weight: 600;
-  color: var(--black);
-  border: var(--border);
-  width: 20%;
-}
-.products .box-container .box .option-buttn {
-  height: 3.5rem;
-  width: 0.001rem;
-  font-size: 2.5rem;
-}
+/* Buttons */
 .products .box-container .box .latest-btn {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: baseline;
+  gap: 1.2rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
 }
+
+.products .box-container .box .option-buttn {
+  background: #0a8d29;
+  border: none;
+  height: 4.2rem;
+  width: 4.2rem;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.products .box-container .box .option-buttn:hover {
+  background: #05661f;
+  transform: scale(1.1);
+}
+
+/* Quantity */
+.products .box-container .box .qty {
+  width: 4.5rem;
+  font-size: 1.6rem;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 0.6rem;
+  border: 1px solid #ccc;
+}
+
 /*----------------------
 ----------------------------quick view-----------*/
 .quick-view .box {
@@ -356,7 +373,7 @@
   width: auto;
 }
 /*----------------------------------------------review--------------------*/
-.reviews .box-container {
+/* .reviews .box-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
   gap: 1.5rem;
@@ -407,9 +424,91 @@
   margin-top: 1rem;
   color: rgb(250, 117, 8);
   font-size: 2rem;
+} */
+
+.reviews {
+  padding: 4rem 2rem;
 }
+
+.reviews .title {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 3rem;
+  font-weight: 700;
+  color: #0a8d29;
+}
+
+.reviews .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+  gap: 2.5rem;
+  justify-content: center;
+}
+
+.reviews .box-container .box {
+  background: linear-gradient(145deg, #d6f5d6, #ffffff);
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: 0.3s ease;
+  position: relative;
+}
+
+.reviews .box-container .box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.reviews .box-container .box .user-photo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reviews .box-container .box img {
+  height: 9rem;
+  width: 9rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #0a8d29;
+  margin-bottom: 1.2rem;
+  background: #fff;
+}
+
+.reviews .box-container .box h3 {
+  font-size: 2rem;
+  color: #057122;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.reviews .box-container .box .review-text {
+  font-size: 1.6rem;
+  color: #333;
+  line-height: 1.7;
+  padding: 0 1rem;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
+.reviews .box-container .box .stars {
+  padding: 0.6rem 1.2rem;
+  display: inline-flex;
+  border-radius: 0.6rem;
+  background: #28ff28;
+  border: 1px solid #c6e8c6;
+}
+
+.reviews .box-container .box .stars i {
+  font-size: 1.8rem;
+  color: #f5a623;
+  margin: 0 0.2rem;
+}
+
+
 /*------------------------------------------------------------review form---------------------------*/
-.reviewsform form {
+/* .reviewsform form {
   margin: 0 auto;
   max-width: 45rem;
   padding: 2rem;
@@ -439,41 +538,160 @@
   margin-left: 29%;
   border-color: 2px solid black;
   border: var(--border);
+} */
+
+
+/* --- Updated Reviews Form Section --- */
+
+.reviewsform form {
+    margin: 3rem auto; /* Increased top margin for separation */
+    max-width: 45rem;
+    padding: 3rem; 
+    text-align: center;
+    
+    /* Soft, modern green background */
+    background-color: #e8f5e9; /* Very light, soft green */
+    
+    /* Smoother, rounded corners */
+    border-radius: 1.2rem;
+    
+    /* More pronounced, softer box shadow for a 'lifted' effect */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1),
+                0 0 0 4px #c8e6c9; /* Subtle green outline/ridge effect */
+    
+    padding-top: 1rem;
+    border: none;
 }
 
+.reviewsform form .box {
+    width: 100%;
+    padding: 1.2rem 1.8rem;
+    margin: 1.2rem 0;
+    
+    background-color: #ffffff; 
+    font-size: 1.8rem;
+    color: #388e3c; /* Darker green text */
+    
+    /* Smoother corners for inputs */
+    border-radius: 0.8rem;
+    
+    /* Subtle border and shadow for depth */
+    border: 1px solid #c8e6c9;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease; 
+}
+
+/* Focus effect for inputs */
+.reviewsform form .box:focus {
+    border-color: #66bb6a; /* Bright green border on focus */
+    box-shadow: 0 0 0 0.2rem rgba(102, 187, 106, 0.25);
+    outline: none;
+}
+
+.reviewsform form textarea {
+    height: 18rem; 
+    resize: vertical;
+}
+
+/* --- Submit Button (.btn) --- */
+
+.reviewsform form .btn {
+    display: block; 
+    width: 100%; /* Full width button */
+    
+    margin-top: 2rem;
+    padding: 1.2rem;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    
+    /* Primary green color scheme for the button */
+    background-color: #4CAF50; 
+    color: white;
+    border: none;
+    border-radius: 0.8rem;
+    
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2); 
+    transition: all 0.3s ease;
+}
+
+/* Button Hover Effect */
+.reviewsform form .btn:hover {
+    background-color: #388e3c; /* Darker green on hover */
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px); 
+}
 /*------------------------------------
 ------------------------------------------contect form---------*/
+
+
 .contact form {
-  margin: 0 auto;
-  max-width: 45rem;
-  padding: 2rem;
-  text-align: center;
-  border: 2px ridge rgb(187, 187, 187);
-  background-color: rgb(193, 218, 193);
-  box-shadow: 2px 2px 4px 2px rgb(39, 39, 39);
-  border-radius: 0.9rem;
-  padding-top: 1rem;
+    margin: 0 auto;
+    max-width: 45rem;
+    padding: 3rem;
+    text-align: center;
+    
+    background-color: #e8f5e9; 
+    border-radius: 1.2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1),
+                0 0 0 4px #c8e6c9;
+    padding-top: 1rem;
+    border: none;
 }
 
 .contact form .box {
-  width: 100%;
-  padding: 1rem 1.4rem;
-  margin: 1rem 0;
-  background-color: rgb(255, 255, 255);
-  font-size: 1.8rem;
-  color: var(--black);
-  border-radius: 0.5rem;
+    width: 100%;
+    padding: 1.2rem 1.8rem; 
+    margin: 1.2rem 0;
+    
+    background-color: #ffffff; 
+    font-size: 1.8rem;
+    color: #388e3c;
+    border-radius: 0.8rem;
+    border: 1px solid #c8e6c9; 
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); 
+    transition: all 0.3s ease; 
+}
+
+.contact form .box:focus {
+    border-color: #66bb6a; 
+    box-shadow: 0 0 0 0.2rem rgba(102, 187, 106, 0.25);
+    outline: none;
 }
 
 .contact form textarea {
-  height: 15rem;
-  resize: none;
+    height: 18rem;
+    resize: vertical; 
 }
+
 .contact form .btn {
-  margin-left: 29%;
-  border-color: 2px solid black;
-  border: var(--border);
+    display: block; 
+    width: 100%;
+    
+    margin-top: 2rem;
+    padding: 1.2rem;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 0.8rem;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2); 
+    transition: all 0.3s ease;
 }
+
+.contact form .btn:hover {
+    background-color: #388e3c; 
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3); 
+    transform: translateY(-2px); 
+}
+
+
+
+
+
+
 
 .search-form form {
   display: flex;
@@ -835,7 +1053,7 @@
 }
 /*---------------------------------------------
 --------------------------------------------------Order place-----------------*/
-.placed-orders .box-container {
+/* .placed-orders .box-container {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
@@ -871,6 +1089,69 @@
   color: rgb(255, 255, 255);
   font-weight: 600;
   border-radius: 4px;
+} */
+
+
+/* --- Updated Placed Orders Section --- */
+
+.placed-orders .box-container {
+    display: grid; /* Use grid for responsive layout */
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr)); /* Min width of 30rem per card */
+    gap: 2rem; /* Increased gap for better separation */
+    padding: 1rem;
+}
+
+.placed-orders .box-container .box {
+    padding: 2.5rem; /* Increased padding */
+    width: 100%; /* Ensure card takes up its grid column space */
+    
+    /* Light green background for the card */
+    background-color: #f1f8e9; /* Very light green */
+    
+    /* Removed the ridge border for a modern look */
+    border: 1px solid #c5e1a5; /* Subtle light green border */
+    
+    /* Smoother, slightly more rounded corners */
+    border-radius: 1rem;
+    
+    /* Soft, subtle shadow for a lifted effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    
+    /* Added transition for subtle hover effect */
+    transition: all 0.3s ease;
+}
+
+.placed-orders .box-container .box:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Lift higher on hover */
+}
+
+.placed-orders .box-container .box p {
+    margin: 0.8rem 0; /* Consistent vertical spacing */
+    line-height: 1.6;
+    font-size: 1.8rem; /* Slightly reduced font size for cleaner look */
+    color: #4CAF50; /* Primary green color for the labels */
+    font-weight: 600; /* Bold labels */
+}
+
+.placed-orders .box-container .box p span {
+    color: #333; /* Darker text for the values */
+    font-weight: 500;
+    font-size: 1.7rem; 
+    display: block; /* Ensures values drop to a new line for better readability on smaller screens */
+}
+
+/* Specific style for the Name header (made it more like a dedicated header) */
+.placed-orders .box-container .box .name {
+    /* Use a dedicated space for the name */
+    background-color: #81c784; /* Medium green */
+    text-align: left;
+    padding: 1rem 1.5rem;
+    font-size: 2rem;
+    color: white;
+    font-weight: 700;
+    border-radius: 0.8rem;
+    margin-bottom: 1.5rem;
+    display: block;
 }
 
 @media (max-width: 768px) {

@@ -19,7 +19,7 @@ if (!isset($user_id)) {
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>PC Shop</title>
+   <title>About</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -82,27 +82,43 @@ if (!isset($user_id)) {
 
    <hr>
 
-   <section class="reviews">
+  <section class="reviews">
 
-      <h1 class="title">What our customers saying</h1>
+   <h1 class="title">What Our Customers Say</h1>
 
-      <div class="box-container">
-         <?php
-         $reviewque = "SELECT `review`.`name` AS `username`, `review`.`reviews` AS `reveiws`, `review`.`userid`, `users`.`image` AS `userpic`FROM `review`, `users`WHERE `review`.`userid` = `users`.`id`;";
-         $reviewres = $conn->query($reviewque);
-         while ($reviws = $reviewres->fetch(PDO::FETCH_ASSOC)) {
-         ?>
-            <div class="box">
-               <img src="uploaded_img/<?php echo $reviws['userpic']; ?>">
-               <h3><?php echo $reviws['username']; ?></h3>
-               <p><?php echo $reviws['reveiws']; ?></p>
+   <div class="box-container">
 
-            </div>
-         <?php } ?>
+      <?php
+      $reviewque = "SELECT review.name AS username, review.reviews AS reveiws, review.userid, users.image AS userpic 
+                    FROM review, users 
+                    WHERE review.userid = users.id;";
+      $reviewres = $conn->query($reviewque);
+
+      while ($reviws = $reviewres->fetch(PDO::FETCH_ASSOC)) {
+      ?>
+
+      <div class="box">
+
+         <div class="user-photo">
+            <img src="uploaded_img/<?php echo $reviws['userpic']; ?>" alt="Customer">
+         </div>
+
+         <h3><?php echo $reviws['username']; ?></h3>
+
+         <p class="review-text">
+            “<?php echo $reviws['reveiws']; ?>”
+         </p>
+
+         
 
       </div>
 
-   </section>
+      <?php } ?>
+
+   </div>
+
+</section>
+
 
 
 

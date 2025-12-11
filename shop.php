@@ -113,21 +113,49 @@ if (isset($_POST['add_to_cart'])) {
          if ($select_products->rowCount() > 0) {
             while ($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)) {
          ?>
+
+               <!-- UPDATED PRODUCT CARD DESIGN -->
                <form action="" class="box" method="POST">
-                  <div class="price">Tk.<span><?= $fetch_products['price']; ?></span>/=</div>
-                  <a href="view_page.php?pid=<?= $fetch_products['id']; ?>" class="fas fa-eye"></a>
-                  <img src="uploaded_img/<?= $fetch_products['image']; ?>" alt="">
-                  <div class="name"><?= $fetch_products['name']; ?></div>
+
+                  <div class="price">
+                     <span class="currency">Tk.</span>
+                     <span class="amount"><?= $fetch_products['price']; ?></span>
+                     <span class="suffix">/=</span>
+                  </div>
+
+                  <a href="view_page.php?pid=<?= $fetch_products['id']; ?>" class="fas fa-eye view-btn"></a>
+
+                  <div class="img-container">
+                     <img src="uploaded_img/<?= $fetch_products['image']; ?>" alt="">
+                  </div>
+
+                  <div class="details">
+                     <h3 class="name"><?= $fetch_products['name']; ?></h3>
+                  </div>
+
                   <input type="hidden" name="pid" value="<?= $fetch_products['id']; ?>">
                   <input type="hidden" name="p_name" value="<?= $fetch_products['name']; ?>">
                   <input type="hidden" name="p_price" value="<?= $fetch_products['price']; ?>">
                   <input type="hidden" name="p_image" value="<?= $fetch_products['image']; ?>">
+
                   <div class="latest-btn">
-                     <button type="submit" class="option-buttn" name="add_to_cart"><i class="fas fa-cart-shopping fa-bounce" style=" --fa-bounce-start-scale-x: 1; --fa-bounce-start-scale-y: 1; --fa-bounce-jump-scale-x: 1; --fa-bounce-jump-scale-y: 1; --fa-bounce-land-scale-x: 1; --fa-bounce-land-scale-y: 1; "></i></button>
-                     <button type="submit" class="option-buttn" name="add_to_wishlist"><i class="fa-solid fa-heart fa-beat"></i></button>
-                     <input type="number" min="0" value="1" name="p_qty" class="qty">
+
+                     <button type="submit" class="option-buttn" name="add_to_cart" title="Add to Cart">
+                        <i class="fas fa-cart-shopping fa-bounce"></i>
+                     </button>
+
+                     <button type="submit" class="option-buttn" name="add_to_wishlist" title="Add to Wishlist">
+                        <i class="fa-solid fa-heart fa-beat"></i>
+                     </button>
+
+                     <input type="num.fas,.fa-heart{
+   color: white !important;
+}ber" min="1" value="1" name="p_qty" class="qty">
+
                   </div>
+
                </form>
+
          <?php
             }
          } else {
