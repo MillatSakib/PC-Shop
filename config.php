@@ -1,9 +1,18 @@
 <?php
+// Detect if running inside Docker
+$isDocker = file_exists('/.dockerenv');
 
-$db_name = "mysql:host=db;dbname=shop_db";
-$username = "root";
-$password = "";
+// Choose host dynamically
+$host = $isDocker ? "db" : "127.0.0.1";
 
-$conn = new PDO($db_name, $username, $password);
+$dbname = "shop_db";
+$user = "root";
+$pass = "";
 
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("DB Connection failed: " . $e->getMessage());
+}
 ?>

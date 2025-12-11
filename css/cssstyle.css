@@ -70,7 +70,7 @@
   margin-right: auto;
 }
 /* ---------------------added product to show---------*/
-
+/* 
 .show-products {
   padding-top: 0;
 }
@@ -130,10 +130,108 @@
 .show-products .box-container .flex-btn .option-btn {
   background-color: rgb(75, 161, 82);
   color: rgb(255, 255, 255);
+} */
+
+
+.show-products .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 10px;
+}
+
+.show-products .box {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 18px;
+    text-align: left;
+    border: 2px solid #e6f2e7;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    transition: 0.25s ease-in-out;
+    position: relative;
+}
+
+.show-products .box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+    border-color: #1c641f;
+}
+
+.show-products .box img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.show-products .box .price {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #1c641f;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.show-products .box .name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1c641f;
+    margin-bottom: 6px;
+}
+
+.show-products .box .cat {
+    font-size: 15px;
+    color: #555;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.show-products .box .details {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.show-products .flex-btn {
+    display: flex;
+    justify-content: space-between;
+}
+
+.show-products .option-btn,
+.show-products .delete-btn {
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.show-products .option-btn {
+    background: #1c641f;
+    color: #fff;
+}
+
+.show-products .option-btn:hover {
+    background: #145017;
+}
+
+.show-products .delete-btn {
+    background: #d93025;
+    color: #fff;
+}
+
+.show-products .delete-btn:hover {
+    background: #b31f17;
 }
 
 /*----------update product----------*/
-
+/* 
 .update-product form {
   max-width: 45rem;
   padding: 3rem;
@@ -161,9 +259,112 @@
   font-weight: 600;
   color: var(--black);
   margin: 0.5rem 0;
-}
-/*------------------place Order-----------------*/
+} */
 
+/* ------------------ Update Product Page Redesigned (UI Only) ------------------ */
+
+.update-product {
+    padding: 20px;
+}
+
+.update-product .title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1c641f;
+    margin-bottom: 25px;
+}
+
+/* Form Card */
+.update-product form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    border: 2px solid #e6f5e7;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Preview Image */
+.update-product form img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 14px;
+    margin-bottom: 15px;
+    border: 3px solid #1c641f;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.16);
+}
+
+/* Inputs */
+.update-product form .box,
+.update-product form select,
+.update-product form textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 15px 0;
+    border-radius: 10px;
+    border: 2px solid #d6ead8;
+    background: #f7fcf8;
+    font-size: 15px;
+    transition: .2s ease;
+}
+
+.update-product form .box:focus,
+.update-product form textarea:focus,
+.update-product form select:focus {
+    border-color: #1c641f;
+    background: #ffffff;
+    box-shadow: 0 0 6px rgba(28, 100, 31, 0.35);
+    outline: none;
+}
+
+/* Buttons Row */
+.update-product .flex-btn {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+/* Update Button */
+.update-product .btn {
+    background: #1c641f;
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+}
+
+.update-product .btn:hover {
+    background: #145017;
+}
+
+/* Go Back Button */
+.update-product .option-btn {
+    background: #d6d6d6;
+    color: #222;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.update-product .option-btn:hover {
+    background: #bdbdbd;
+}
+
+
+/*------------------place Order-----------------*/
+/* 
 .placed-orders .box-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, 30rem);
@@ -202,11 +403,90 @@
   border-radius: 0.5rem;
   background-color:rgb(248, 248, 248);
   margin-bottom: 0.5rem;
+} */
+
+
+
+.placed-orders .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    gap: 20px;
 }
+
+.placed-orders .box {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 20px;
+    border-left: 6px solid #1c641f; /* green theme */
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    transition: 0.25s ease-in-out;
+}
+
+.placed-orders .box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.placed-orders .box p {
+    font-size: 15px;
+    margin: 6px 0;
+    color: #333;
+    font-weight: 500;
+}
+
+.placed-orders .box p span {
+    color: #1c641f;
+    font-weight: 700;
+}
+
+.placed-orders .drop-down {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 8px;
+    border: 2px solid #1c641f;
+    background: #ecf6ec;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.placed-orders .flex-btn {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.placed-orders .option-btn {
+    background: #1c641f;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+}
+
+.placed-orders .option-btn:hover {
+    background: #145017;
+}
+
+.placed-orders .delete-btn {
+    background: #d93025 !important;
+    color: #fff !important;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.placed-orders .delete-btn:hover {
+    background: #b31f17 !important;
+}
+
+
 /*--------------------------
 ------------------------------------user-account-----------------*/
 
-.user-accounts .box-container {
+/* .user-accounts .box-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, 33rem);
   gap: 1rem;
@@ -245,10 +525,125 @@
   font-weight: 500;
   margin: 2px;
    
+} */
+
+
+
+/* ------------------ Modern User Card Design (UI Only) ------------------ */
+
+/* Make Admin Button */
+.admin-btn {
+     display: inline-block;
+    margin-top: 12px;
+    padding: 10px 16px;
+    font-size: 16px;
+    background: #1c641f;
+    color: #fff !important;
+    font-weight: 600;
+    border-radius: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.25s ease-in-out;
 }
+
+.admin-btn:hover {
+    background: #145017;
+}
+
+/* Disabled Admin Button (Already Admin) */
+.admin-btn.disabled {
+    background: #9e9e9e !important;
+    color: #f2f2f2 !important;
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.7;
+    font-size: 16px;
+}
+
+
+.user-accounts .title {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1c641f;
+    margin-bottom: 25px;
+}
+
+.user-accounts .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 15px;
+}
+
+.user-accounts .box {
+    background: #ffffff;
+    padding: 22px;
+    border-radius: 16px;
+    border: 2px solid #e6f5e7;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    text-align: center;
+    transition: 0.25s ease-in-out;
+}
+
+.user-accounts .box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.18);
+    border-color: #1c641f;
+}
+
+/* User Profile Image */
+.user-accounts .box img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 4px solid #1c641f;
+}
+
+/* Text styling */
+.user-accounts .box p {
+    font-size: 15px;
+    margin: 8px 0;
+    font-weight: 500;
+    color: #333;
+}
+
+.user-accounts .box p span {
+    font-weight: 700;
+    color: #1c641f;
+}
+
+/* Special Color for Admin */
+.user-accounts .box p span[style] {
+    color: orange !important;
+}
+
+/* Delete Button */
+.user-accounts .delete-btn {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 16px;
+    padding: 10px 16px;
+    background: #d93025;
+    color: #fff !important;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s ease-in-out;
+}
+
+.user-accounts .delete-btn:hover {
+    background: #b31f17;
+}
+
+
+
 /*-------------------------------------------
 ------------------------------------use message--------------------*/
-
+/* 
 .messages .box-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, 33rem);
@@ -279,13 +674,83 @@
 .messages .box-container .box p span {
  color: rgb(6, 185, 45);
  font-weight: 500;
+} */
+
+
+/* ------------------ Modern Message Card Design (UI Only) ------------------ */
+
+.messages .title {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1c641f;
+    margin-bottom: 25px;
 }
+
+.messages .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    gap: 22px;
+    padding: 10px;
+}
+
+.messages .box {
+    background: #ffffff;
+    padding: 22px;
+    border-radius: 16px;
+    border-left: 6px solid #1c641f; 
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    transition: 0.25s ease-in-out;
+}
+
+.messages .box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+}
+
+.messages .box p {
+    font-size: 15px;
+    margin: 8px 0;
+    font-weight: 500;
+    color: #333;
+}
+
+.messages .box p span {
+    color: #1c641f;
+    font-weight: 700;
+}
+
+.messages .box .name {
+    font-size: 17px;
+    font-weight: 700;
+    color: #1c641f;
+}
+
+.messages .delete-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 16px;
+    background: #d93025;
+    color: #fff !important;
+    border-radius: 10px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    transition: .2s ease-in-out;
+}
+
+.messages .delete-btn:hover {
+    background: #b31f17;
+}
+
+
 
 @media (max-width: 768px) {
   .add-products form .flex .inputBox {
     width: 100%;
   }
 }
+
 
 @media (max-width: 450px) {
   .show-products .box-container {
