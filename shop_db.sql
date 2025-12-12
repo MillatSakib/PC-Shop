@@ -487,7 +487,7 @@ VALUES
     '429d63689a0813ea87fa77c3931bf263',
     'admin',
     'feroza.jpg'
-  );
+  ),
   (
     2,
     'Md. Sohan Millat Sakib',
@@ -528,7 +528,6 @@ VALUES
     'admin',
     'GUBLogo.png'
   );
-  
 
 -- --------------------------------------------------------
 --
