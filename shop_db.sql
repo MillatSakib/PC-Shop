@@ -482,6 +482,14 @@ INSERT INTO
 VALUES
   (
     1,
+    'Feroza Naznin Lia',
+    'feroza@cse.green.edu.bd',
+    '429d63689a0813ea87fa77c3931bf263',
+    'admin',
+    'feroza.jpg'
+  );
+  (
+    2,
     'Md. Sohan Millat Sakib',
     'millatsakib01@gmail.com',
     '429d63689a0813ea87fa77c3931bf263',
@@ -489,7 +497,7 @@ VALUES
     'sohan-millat-sakib.png'
   ),
   (
-    2,
+    3,
     'Fatema Jahan Prithu',
     'prithu@gmail.com',
     '429d63689a0813ea87fa77c3931bf263',
@@ -497,7 +505,7 @@ VALUES
     'prithu.png'
   ),
   (
-    3,
+    4,
     'Ekra Islam Ohi',
     'ohi@gmail.com',
     '429d63689a0813ea87fa77c3931bf263',
@@ -505,7 +513,7 @@ VALUES
     'ohi.jpg'
   ),
   (
-    4,
+    5,
     'Ayshi Sarker',
     'ayshi@gmail.com',
     '429d63689a0813ea87fa77c3931bf263',
@@ -513,13 +521,14 @@ VALUES
     'ayshi.jpg'
   ),
   (
-    59,
+    6,
     'Green University',
     'green@gmail.com',
     '429d63689a0813ea87fa77c3931bf263',
     'admin',
     'GUBLogo.png'
   );
+  
 
 -- --------------------------------------------------------
 --
