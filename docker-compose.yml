@@ -19,6 +19,7 @@ services:
   app:
     build: .
     container_name: shop_web
+    restart: always
     volumes:
       - .:/var/www/html
     ports:
